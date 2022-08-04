@@ -8,11 +8,12 @@ import com.techbank.cqrs.core.events.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@SuperBuilder
+@SuperBuilder
 public class AccountOpenedEvent extends BaseEvent {
 	private String accountHolder;
 	private AccountType accountType;
