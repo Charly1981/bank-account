@@ -19,7 +19,7 @@ public class AccountEventConsumer implements EventConsumer {
 	@KafkaListener(topics = "AccountOpenedEvent", groupId = "${spring.kafka.consumer.group-id}")
 	@Override
 	public void consumer(AccountOpenedEvent event, Acknowledgment ack) {
-		eventHandler.on(event);
+		this.eventHandler.on(event);
 		ack.acknowledge();
 
 	}
@@ -27,7 +27,7 @@ public class AccountEventConsumer implements EventConsumer {
 	@KafkaListener(topics = "FundsDepositedEvent", groupId = "${spring.kafka.consumer.group-id}")
 	@Override
 	public void consumer(FundsDepositedEvent event, Acknowledgment ack) {
-		eventHandler.on(event);
+		this.eventHandler.on(event);
 		ack.acknowledge();
 
 	}
@@ -35,7 +35,7 @@ public class AccountEventConsumer implements EventConsumer {
 	@KafkaListener(topics = "FundsWithdrawnEvent", groupId = "${spring.kafka.consumer.group-id}")
 	@Override
 	public void consumer(FundsWithdrawnEvent event, Acknowledgment ack) {
-		eventHandler.on(event);
+		this.eventHandler.on(event);
 		ack.acknowledge();
 
 	}
@@ -43,7 +43,7 @@ public class AccountEventConsumer implements EventConsumer {
 	@KafkaListener(topics = "AccountClosedEvent", groupId = "${spring.kafka.consumer.group-id}")
 	@Override
 	public void consumer(AccountClosedEvent event, Acknowledgment ack) {
-		eventHandler.on(event);
+		this.eventHandler.on(event);
 		ack.acknowledge();
 
 	}

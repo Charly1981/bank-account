@@ -7,7 +7,7 @@ import com.techbank.account.cmd.domain.AccountAggregate;
 import com.techbank.cqrs.core.handlers.EventSorucingHandler;
 
 @Service
-public class AccountComnandHandler implements CommandHandler {
+public class AccountCommandHandler implements CommandHandler {
 
 	@Autowired
 	private EventSorucingHandler<AccountAggregate> eventSorucingHandler;
