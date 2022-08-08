@@ -47,4 +47,10 @@ public class AccountCommandHandler implements CommandHandler {
 
 	}
 
+	@Override
+	public void handle(RestoreReadDBCommand command) {
+		eventSorucingHandler.republishedEvents();
+
+	}
+
 }

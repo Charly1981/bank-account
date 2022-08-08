@@ -9,12 +9,16 @@ import com.techbank.account.cmd.domain.AccountAggregate;
 import com.techbank.cqrs.core.domain.AggregateRoot;
 import com.techbank.cqrs.core.handlers.EventSorucingHandler;
 import com.techbank.cqrs.core.infrastructure.EventStore;
+import com.techbank.cqrs.core.producers.EventProducer;
 
 @Service
 public class AccountEventSourcingHandler implements EventSorucingHandler<AccountAggregate> {
 
 	@Autowired
 	private EventStore eventStore;
+
+	@Autowired
+	private EventProducer eventProducer;
 
 	@Override
 	public void save(AggregateRoot aggregate) {
@@ -35,6 +39,22 @@ public class AccountEventSourcingHandler implements EventSorucingHandler<Account
 		}
 
 		return aggregate;
+
+	}
+
+	@Override
+	public void republishedEvents() {
+		var aggregaIds = eventStore.getAggregateIds();
+		for (var aggregateId : aggregaIds) {
+			var aggregate = getById(aggregateId);
+			if (aggregate == null || !aggregate.getActive())
+				continue;
+			var events = eventStore.getEvents(aggregateId);
+			for (var event : events) {
+				eventProducer.produce(event.getClass().getSimpleName(), event);
+
+			}
+		}
 
 	}
 

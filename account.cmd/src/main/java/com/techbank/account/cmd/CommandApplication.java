@@ -10,6 +10,7 @@ import com.techbank.account.cmd.api.commands.CloseAccountCommand;
 import com.techbank.account.cmd.api.commands.CommandHandler;
 import com.techbank.account.cmd.api.commands.DepositFundsCommand;
 import com.techbank.account.cmd.api.commands.OpenAccountCommand;
+import com.techbank.account.cmd.api.commands.RestoreReadDBCommand;
 import com.techbank.account.cmd.api.commands.WithdrawFundsCommand;
 import com.techbank.cqrs.core.infrastructure.CommandDispatcher;
 
@@ -32,6 +33,7 @@ public class CommandApplication {
 		commandDispatcher.registerHandler(DepositFundsCommand.class, commandHandler::handle);
 		commandDispatcher.registerHandler(WithdrawFundsCommand.class, commandHandler::handle);
 		commandDispatcher.registerHandler(CloseAccountCommand.class, commandHandler::handle);
+		commandDispatcher.registerHandler(RestoreReadDBCommand.class, commandHandler::handle);
 
 	}
 
